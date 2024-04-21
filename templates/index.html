@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Task Management</h1>
+    
+    <a href="{{ url_for('finished_tasks') }}" class="finished-tasks-btn">Finished Tasks</a>
+
+    
+    <div class="container">
+        <form action="{{ url_for('create_task') }}" method="POST">
+            <input type="text" name="task_name" placeholder="Enter task name">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <div class="task">
+                    <select class="assignee-dropdown">
+                        <option value="1">User 1</option>
+                        <option value="2">User 2</option>
+                        <option value="3">User 3</option>
+                    </select>
+                    <span class="task-name">{{ task.name }}</span>
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete-btn">Delete</a>
+                    <a href="{{ url_for('mark_done', task_id=task.id) }}" class="done-btn">Done</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>    
+    
+</body>
+</html>
