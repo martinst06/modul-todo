@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Finished Tasks</title>
 </head>
 <body>
-    <p>test</p>
+    <h1>Finished Tasks</h1>
+    <div class="container">
+        <ul>
+            {% for task in done_tasks %}
+                <li>
+                    <div class="task">
+                        <span class="task-name">{{ task.name }}</span>
+                        <a href="{{ url_for('delete_task_done', task_id=task.id) }}" class="delete-btn">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

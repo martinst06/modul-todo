@@ -9,9 +9,8 @@
 <body>
     <h1>Task Management</h1>
     
-    <a href="{{ url_for('finished_tasks') }}" class="finished-tasks-btn">Finished Tasks</a>
+    <a href="{{ url_for('done') }}" class="finished-tasks-btn">Finished Tasks</a>
 
-    
     <div class="container">
         <form action="{{ url_for('create_task') }}" method="POST">
             <input type="text" name="task_name" placeholder="Enter task name">
@@ -29,7 +28,7 @@
                         <option value="3">User 3</option>
                     </select>
                     <span class="task-name">{{ task.name }}</span>
-                    <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete-btn">Delete</a>
+                    <a href="{{ url_for('delete_task_index', task_id=task.id) }}" class="delete-btn">Delete</a>
                     <a href="{{ url_for('mark_done', task_id=task.id) }}" class="done-btn">Done</a>
                 </div>
             </li>
